@@ -19,7 +19,7 @@ A fast, lightweight, and dynamic Command-Line Interface (CLI) engine built in Go
 
 The project utilizes an idiomatic, flat package layout where all files share the `main` package for optimal internal compilation performance:
 
-```text
+```shell
 gradelog/
 ├── go.mod          # Module definition and dependencies
 ├── main.go         # Entry point: Orchestrates CLI args parsing and data pipeline
@@ -28,54 +28,67 @@ gradelog/
 └── cgparange.go    # Tiers and routes the final CGPA to standard honor classifications
 ```
 
-## 🚀 Getting Started
+# 🚀 Getting Started
 
-# Prerequisites
+## Prerequisites
 - [Go](https://go.dev/doc/install) (1.16 or higher recommended)
 
-# Installation
+## Installation
 Clone the repository and navigate to the project directory:
 
+```shell
 git clone [https://github.com/Lotacodic/gradelog.git](https://github.com/Lotacodic/gradelog.git)
 cd gradelog
+```
 
-# Running the Tool
+## Running the Tool
 Because the project is split into modular files within the same package, run or build the application using the directory wildcard (.):
 
+```shell
 go run . "COURSE_CODE CREDIT_UNITS SCORE" ["COURSE_CODE CREDIT_UNITS SCORE" ...]
+```
+# 📊 Usage Examples
 
-## 📊 Usage Examples
-
-# 1. Successful Calculation
+## 1. Successful Calculation
 Pass your course details as space-separated values within quoted strings.
 
+```shell
 go run . "MATH101 3 70" "ENG101 2 70" "GST101 1 54" "FEG101 3 78" "CHE101 3 47"
+```
 
-# Output:
+## Output:
+
+```shell
 70 -> A -> 5 -> 15
 70 -> A -> 5 -> 10
 54 -> C -> 3 -> 3
 78 -> A -> 5 -> 15
 47 -> D -> 2 -> 6
 myCgpa: 4.08 -> Second class honours (Upper Division)
+```
 
-# 2. Error Handling & Validation
+## 2. Error Handling & Validation
 The tool guarantees data integrity. If any input contains an invalid score boundary, it safely handles the exception:
 
 go run . "MATH101 3 70" "ENG101 2 70" "GST101 1 54" "FEG101 3 78" "CHE101 3 101"
 
-# Output:
+## Output:
+
+```shell
 70 -> A -> 5 -> 15
 70 -> A -> 5 -> 10
 54 -> C -> 3 -> 3
 78 -> A -> 5 -> 15
 Error: Score 101 in "CHE101" is out of range (0-100)!
-
-## ⚙️ Compilation / Deployment
+```
+# ⚙️ Compilation / Deployment
 
 To compile the engine down into a single, high-performance binary executable that can run natively without installing Go:
+
+```shell
 go build .
 ./gradelog "MATH101 3 70" "ENG101 2 70"
+```
 
 ## 📝 License
-Distributed under the MIT License. See LICENSE for more information.
+Distributed under the MIT License. See 'LICENSE` for more information.
