@@ -1,16 +1,16 @@
 package main
 
 func CheckGradePoint(str string) int {
-	switch {
-	case str == "A":
+	switch str {
+	case "A":
 		return 5
-	case str == "B":
+	case "B":
 		return 4
-	case str == "C":
+	case "C":
 		return 3
-	case str == "D":
+	case "D":
 		return 2
-	case str == "E":
+	case "E":
 		return 1
 	default:
 		return 0
